@@ -95,11 +95,11 @@ const showRecipe = async function () {
               <svg class="recipe__icon">
                 <use href="src/img/icons.svg#icon-check"></use>
               </svg>
-              
+
               <div class="recipe__quantity">1000</div>
               <div class="recipe__description">
                 <span class="recipe__unit">g</span>
-                pasta
+                pastaaaaaa
               </div>
             </li>
 
