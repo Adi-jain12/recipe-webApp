@@ -10,7 +10,9 @@
   "author": "Aditya",
   "license": "ISC",
   "dependencies": {
-    "parcel": "^2.9.3"
+    "core-js": "^3.35.1",
+    "parcel": "^2.9.3",
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3"
