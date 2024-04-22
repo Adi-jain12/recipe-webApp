@@ -19,8 +19,8 @@ export default class View {
 
   // this update function is used to update some parts of the view not the whole rendering of page
   update(data) {
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderErrorMessage();
+    // if (!data || (Array.isArray(data) && data.length === 0))
+    //   return this.renderErrorMessage();
 
     this._data = data;
     const newMarkup = this._generateMarkup();
@@ -29,26 +29,25 @@ export default class View {
     // newDOM will act as a VIRTUAL DOM which does not living on the page but it's living in the memory
     const newDOM = document.createRange().createContextualFragment(newMarkup);
     const newElements = Array.from(newDOM.querySelectorAll('*'));
-    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+    const currElements = Array.from(this._parentElement.querySelectorAll('*'));
 
     newElements.forEach((newEl, i) => {
-      const curEl = curElements[i];
-      // console.log(curEl, newEl.isEqualNode(curEl));
+      const currEl = currElements[i];
 
       // Updates changed TEXT
       if (
-        !newEl.isEqualNode(curEl) &&
+        !newEl.isEqualNode(currEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        // console.log('💥', newEl.firstChild.nodeValue.trim());
-        curEl.textContent = newEl.textContent;
+        currEl.textContent = newEl.textContent;
       }
 
       // Updates changed ATTRIBUTES
-      if (!newEl.isEqualNode(curEl))
+      if (!newEl.isEqualNode(currEl)) {
         Array.from(newEl.attributes).forEach(attr =>
-          curEl.setAttribute(attr.name, attr.value)
+          currEl.setAttribute(attr.name, attr.value)
         );
+      }
     });
   }
 
