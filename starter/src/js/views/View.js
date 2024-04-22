@@ -17,6 +17,22 @@ export default class View {
     this._parentElement.innerHTML = '';
   }
 
+  // this update function is used to update some parts of the view not the whole rendering of page
+  update(data) {
+    if (!data || (Array.isArray(data) && data.length === 0))
+      return this.renderErrorMessage();
+
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+
+    // above markup has string which we will convert to real DOM node object and then compare with the actual DOM that's living on the page
+    // newDOM will act as a VIRTUAL DOM which does not living on the page but it's living in the memory
+
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = newDOM.querySelectorAll('*');
+    const currElements = this._parentElement.querySelectorAll('*');
+  }
+
   renderSpinner() {
     const markup = `<div class="spinner">
       <svg>
