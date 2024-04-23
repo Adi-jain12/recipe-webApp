@@ -6,11 +6,11 @@ class PaginationView extends View {
 
   addHandlerClickPagination(handler) {
     this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.btn--inline'); // this searches for the closest element looking up in parent tree. Cause we might click on span ele or svg ele
+      const btn = e.target.closest('.btn--inline'); // this searches for the closest element (i.e button tag) looking up in parent tree. Cause we might click on span ele or svg ele
 
       if (!btn) return;
 
-      const gotToPage = +btn.dataset.goto;
+      const gotToPage = +btn.dataset.goto; //connecting DOM with our code to get the value by setting attributes to markups
 
       handler(gotToPage);
     });
