@@ -58,6 +58,7 @@ export const loadSearchResults = async function (query) {
         title: item.title,
         publisher: item.publisher,
         image: item.image_url,
+        ...(item.key && { key: item.key }), // for creating optional property. Spreading gives the same logic as key : recipe.key
       };
     });
 
@@ -124,7 +125,8 @@ export const uploadRecipe = async function (newRecipe) {
     const ingredients = Object.entries(newRecipe)
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
-        const ingArr = ing[1].replaceAll(' ', '').split(',');
+        const ingArr = ing[1].split(',');
+        console.log('INGARR', ingArr);
 
         if (ingArr.length !== 3) {
           throw new Error(
