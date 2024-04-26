@@ -123,6 +123,11 @@ const controlAddRecipe = async function (addRecipe) {
   }
 };
 
+const controlSorting = function () {
+  try {
+  } catch (error) {}
+};
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
